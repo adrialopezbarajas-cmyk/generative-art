@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Arte Generativo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 900px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #999;
+            margin-bottom: 30px;
+            font-size: 0.9em;
+        }
+
+        .canvas-container {
+            position: relative;
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            aspect-ratio: 4 / 3;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.95em;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .value {
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #ddd;
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #667eea;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #667eea;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+        }
+
+        input[type="range"]::-moz-range-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        button {
+            padding: 12px 28px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95em;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary:active {
+            transform: translateY(0);
+        }
+
+        .info {
+            text-align: center;
+            color: #999;
+            font-size: 0.85em;
+            margin-top: 20px;
+        }
+
+        .info p {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .controls {
+                grid-template-columns: 1fr;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✨ Generador de Arte</h1>
+        <p class="subtitle">Haz clic o ajusta los controles para crear arte único</p>
+
+        <div class="canvas-container">
+            <canvas id="artCanvas"></canvas>
+        </div>
+
+        <div class="controls">
+            <div class="control-group">
+                <label>
+                    Complejidad
+                    <span class="value" id="complexityValue">5</span>
+                </label>
+                <input type="range" id="complexity" min="1" max="10" value="5">
+            </div>
+
+            <div class="control-group">
+                <label>
+                    Escala
+                    <span class="value" id="scaleValue">1</span>
+                </label>
+                <input type="range" id="scale" min="0.5" max="3" step="0.1" value="1">
+            </div>
+
+            <div class="control-group">
+                <label>
+                    Rotación
+                    <span class="value" id="rotationValue">0°</span>
+                </label>
+                <input type="range" id="rotation" min="0" max="360" value="0">
+            </div>
+
+            <div class="control-group">
+                <label>
+                    Densidad
+                    <span class="value" id="densityValue">5</span>
+                </label>
+                <input type="range" id="density" min="2" max="15" value="5">
+            </div>
+
+            <div class="control-group">
+                <label>
+                    Velocidad de Color
+                    <span class="value" id="colorSpeedValue">5</span>
+                </label>
+                <input type="range" id="colorSpeed" min="1" max="10" value="5">
+            </div>
+
+            <div class="control-group">
+                <label>
+                    Brillo
+                    <span class="value" id="brightnessValue">100%</span>
+                </label>
+                <input type="range" id="brightness" min="0" max="200" value="100">
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button class="btn-primary" id="generateBtn">🎲 Generar Nuevo</button>
+            <button class="btn-secondary" id="downloadBtn">⬇️ Descargar PNG</button>
+            <button class="btn-secondary" id="resetBtn">↺ Reiniciar</button>
+        </div>
+
+        <div class="info">
+            <p>💡 Haz clic en el lienzo para sorpresas aleatorias</p>
+            <p>🎨 Combina deslizadores para crear tu estilo único</p>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('artCanvas');
+        const ctx = canvas.getContext('2d');
+        let animationId;
+        let seed = Math.random();
+
+        // Responsive canvas
+        function resizeCanvas() {
+            const rect = canvas.parentElement.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = rect.height;
+            draw();
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // Simple hash function for pseudo-random numbers
+        function seededRandom(seed) {
+            const x = Math.sin(seed) * 10000;
+            return x - Math.floor(x);
+        }
+
+        function draw() {
+            const complexity = parseInt(document.getElementById('complexity').value);
+            const scale = parseFloat(document.getElementById('scale').value);
+            const rotation = parseFloat(document.getElementById('rotation').value);
+            const density = parseInt(document.getElementById('density').value);
+            const colorSpeed = parseInt(document.getElementById('colorSpeed').value);
+            const brightness = parseInt(document.getElementById('brightness').value);
+
+            // Clear canvas with dark background
+            ctx.fillStyle = '#0a0a0a';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const maxRadius = Math.min(canvas.width, canvas.height) / 2.5;
+
+            // Save context for rotation
+            ctx.save();
+            ctx.translate(centerX, centerY);
+            ctx.rotate((rotation * Math.PI) / 180);
+
+            // Draw multiple layers
+            for (let layer = 0; layer < density; layer++) {
+                const layerSeed = seed + layer * 0.1;
+                const hue = (seededRandom(layerSeed * colorSpeed) * 360) % 360;
+                const saturation = 70 + seededRandom(layerSeed) * 30;
+                const lightness = 40 + (brightness / 100) * 20 + seededRandom(layerSeed * 2) * 20;
+
+                ctx.fillStyle = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+                ctx.strokeStyle = `hsl(${hue}, ${saturation}%, ${lightness + 20}%)`;
+                ctx.lineWidth = 2 * scale;
+
+                const numShapes = Math.floor(complexity * (2 + layer));
+
+                for (let i = 0; i < numShapes; i++) {
+                    const shapeSeed = layerSeed + i * 0.01;
+                    const shapeType = Math.floor(seededRandom(shapeSeed * 3) * 4);
+                    const x = (seededRandom(shapeSeed) - 0.5) * maxRadius * 2;
+                    const y = (seededRandom(shapeSeed * 1.5) - 0.5) * maxRadius * 2;
+                    const size = (seededRandom(shapeSeed * 2) + 0.3) * 50 * scale;
+                    const opacity = 0.5 + seededRandom(shapeSeed * 3) * 0.5;
+
+                    ctx.globalAlpha = opacity;
+
+                    switch (shapeType) {
+                        case 0: // Circle
+                            ctx.beginPath();
+                            ctx.arc(x, y, size, 0, Math.PI * 2);
+                            ctx.fill();
+                            break;
+                        case 1: // Rectangle
+                            ctx.fillRect(x - size / 2, y - size / 2, size, size);
+                            break;
+                        case 2: // Triangle
+                            ctx.beginPath();
+                            ctx.moveTo(x, y - size);
+                            ctx.lineTo(x + size, y + size);
+                            ctx.lineTo(x - size, y + size);
+                            ctx.closePath();
+                            ctx.fill();
+                            break;
+                        case 3: // Star
+                            drawStar(x, y, size);
+                            break;
+                    }
+                }
+            }
+
+            ctx.globalAlpha = 1;
+            ctx.restore();
+        }
+
+        function drawStar(cx, cy, size) {
+            const points = 5;
+            const outerRadius = size;
+            const innerRadius = size * 0.4;
+
+            ctx.beginPath();
+            for (let i = 0; i < points * 2; i++) {
+                const radius = i % 2 === 0 ? outerRadius : innerRadius;
+                const angle = (i * Math.PI) / points - Math.PI / 2;
+                const x = cx + radius * Math.cos(angle);
+                const y = cy + radius * Math.sin(angle);
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        // Event listeners
+        document.querySelectorAll('input[type="range"]').forEach((input) => {
+            input.addEventListener('input', function () {
+                document.getElementById(this.id + 'Value').textContent =
+                    this.id === 'brightness'
+                        ? this.value + '%'
+                        : this.id === 'rotation'
+                            ? this.value + '°'
+                            : this.id === 'scale'
+                                ? this.value
+                                : this.value;
+                draw();
+            });
+        });
+
+        document.getElementById('generateBtn').addEventListener('click', () => {
+            seed = Math.random();
+            draw();
+        });
+
+        document.getElementById('resetBtn').addEventListener('click', () => {
+            document.getElementById('complexity').value = 5;
+            document.getElementById('scale').value = 1;
+            document.getElementById('rotation').value = 0;
+            document.getElementById('density').value = 5;
+            document.getElementById('colorSpeed').value = 5;
+            document.getElementById('brightness').value = 100;
+            document.getElementById('complexityValue').textContent = '5';
+            document.getElementById('scaleValue').textContent = '1';
+            document.getElementById('rotationValue').textContent = '0°';
+            document.getElementById('densityValue').textContent = '5';
+            document.getElementById('colorSpeedValue').textContent = '5';
+            document.getElementById('brightnessValue').textContent = '100%';
+            seed = Math.random();
+            draw();
+        });
+
+        document.getElementById('downloadBtn').addEventListener('click', () => {
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL('image/png');
+            link.download = `arte-generativo-${Date.now()}.png`;
+            link.click();
+        });
+
+        canvas.addEventListener('click', () => {
+            seed = Math.random();
+            draw();
+        });
+    </script>
+</body>
+</html>
