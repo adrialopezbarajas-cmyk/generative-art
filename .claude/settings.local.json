@@ -13,7 +13,10 @@
       "PowerShell(gh auth status)",
       "PowerShell(&\\(Get-Command gh\\).Source auth status)",
       "PowerShell(choco install gh -y)",
-      "Bash(git commit -m 'chore: Update settings after gh installation *)"
+      "Bash(git commit -m 'chore: Update settings after gh installation *)",
+      "Bash(git push *)",
+      "Skill(update-config)",
+      "Skill(update-config:*)"
     ]
   }
 }
