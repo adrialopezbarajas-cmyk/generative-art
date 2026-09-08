@@ -8,23 +8,23 @@
 <meta name="description" content="Estudio de desarrollo de aplicaciones móviles a medida para negocios. Creamos apps para Android y iPhone: reservas, pedidos, pagos, fidelización y panel de administración.">
 <meta name="author" content="ROTOR">
 <meta name="theme-color" content="#06070A">
-<link rel="canonical" href="https://adrialopezbarajas-cmyk.github.io/">
+<link rel="canonical" href="https://adrialopezbarajas-cmyk.github.io/rotor/">
 
-<!-- Publicado en GitHub Pages: https://adrialopezbarajas-cmyk.github.io/ -->
+<!-- Publicado en GitHub Pages: https://adrialopezbarajas-cmyk.github.io/rotor/ -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_ES">
 <meta property="og:site_name" content="ROTOR">
 <meta property="og:title" content="Tu negocio. Ahora también en una app.">
 <meta property="og:description" content="Transformamos ideas y negocios en aplicaciones móviles profesionales para Android y Apple.">
-<meta property="og:url" content="https://adrialopezbarajas-cmyk.github.io/">
-<meta property="og:image" content="https://adrialopezbarajas-cmyk.github.io/assets/img/og-cover.webp">
+<meta property="og:url" content="https://adrialopezbarajas-cmyk.github.io/rotor/">
+<meta property="og:image" content="https://adrialopezbarajas-cmyk.github.io/rotor/assets/img/og-cover.webp">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Mecanismo de reloj despiezado, pieza a pieza, sobre fondo negro.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Tu negocio. Ahora también en una app.">
 <meta name="twitter:description" content="Aplicaciones móviles a medida para Android y Apple.">
-<meta name="twitter:image" content="https://adrialopezbarajas-cmyk.github.io/assets/img/og-cover.webp">
+<meta name="twitter:image" content="https://adrialopezbarajas-cmyk.github.io/rotor/assets/img/og-cover.webp">
 
 <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiMwNjA3MEEiLz4KICA8Y2lyY2xlIGN4PSIzMiIgY3k9IjMyIiByPSIyMSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRDZCNDdFIiBzdHJva2Utd2lkdGg9IjMuMiIvPgogIDxwYXRoIGQ9Ik0zMiAxMWEyMSAyMSAwIDAgMSAxOC4yIDEwLjVMMzIgMzJ6IiBmaWxsPSIjQzlBMDYzIi8+CiAgPGNpcmNsZSBjeD0iMzIiIGN5PSIzMiIgcj0iNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRDZCNDdFIiBzdHJva2Utd2lkdGg9IjMuMiIvPgo8L3N2Zz4=" type="image/svg+xml">
 <!-- El favicon va incrustado (data URI): un archivo menos que pueda dar 404.
@@ -59,9 +59,11 @@
   --ink:       #0A0C11;
   --surface:   #0F1218;
   --surface-2: #141822;
-  --line:      rgba(255, 255, 255, .07);
-  --line-2:    rgba(255, 255, 255, .13);
-  --line-3:    rgba(255, 255, 255, .22);
+  /* Líneas con un puntito de calidez (no blanco puro): cosen mejor con el
+     dorado y evitan el aspecto "tech genérico" de las líneas grises frías. */
+  --line:      rgba(233, 220, 199, .08);
+  --line-2:    rgba(233, 220, 199, .14);
+  --line-3:    rgba(233, 220, 199, .24);
 
   /* Texto: nunca blanco puro. */
   --text:   #E9ECF2;
@@ -125,6 +127,10 @@ img { height: auto; }
 button { font: inherit; color: inherit; cursor: pointer; border: 0; background: none; }
 a { color: inherit; text-decoration: none; }
 p { text-wrap: pretty; }
+/* Sin esto, cualquier regla de autor con display propio (flex, grid...)
+   gana por origen al [hidden] por defecto del navegador y el elemento se
+   ve aunque tenga el atributo puesto. */
+[hidden] { display: none !important; }
 h1, h2, h3, h4 { text-wrap: balance; line-height: 1.03; letter-spacing: -0.034em; font-weight: 600; }
 ul, ol { list-style: none; padding: 0; }
 ::selection { background: var(--accent); color: var(--btn-fg-on-accent); }
@@ -266,14 +272,16 @@ html:not(.js) .reveal { opacity: 1; translate: none; }
 .btn--lg { padding: 1.02rem 2rem; font-size: 1rem; }
 
 .btn--primary {
-  --btn-bg: var(--accent);
+  /* Degradado sutil en vez de color plano: da un aire de metal cepillado
+     (latón) coherente con el reloj, en vez de un botón de plantilla. */
+  background: linear-gradient(155deg, var(--accent-soft) 0%, var(--accent) 55%, var(--accent-deep) 100%);
   --btn-fg: var(--btn-fg-on-accent);
-  box-shadow: 0 1px 0 rgba(255,255,255,.18) inset, 0 10px 30px -12px var(--accent-glow);
+  box-shadow: 0 1px 0 rgba(255,255,255,.35) inset, 0 10px 30px -12px var(--accent-glow);
 }
 .btn--primary:hover {
-  --btn-bg: var(--accent-soft);
+  background: linear-gradient(155deg, #fff 0%, var(--accent-soft) 45%, var(--accent) 100%);
   transform: translateY(-2px);
-  box-shadow: 0 1px 0 rgba(255,255,255,.25) inset, 0 18px 40px -14px rgba(201, 160, 99,.55);
+  box-shadow: 0 1px 0 rgba(255,255,255,.4) inset, 0 18px 40px -14px rgba(201, 160, 99,.55);
 }
 .btn--primary:active { transform: translateY(0); }
 
@@ -873,6 +881,16 @@ html:not(.js) .proj__more-cta { display: none; }
 }
 .form-block__list .ico { font-size: 1rem; color: var(--accent-soft); margin-top: .15rem; }
 
+.form-block__direct { margin-top: 1.8rem; padding-top: 1.8rem; border-top: 1px solid var(--line); }
+.form-block__direct-label { font-size: .8rem; color: var(--text-3); font-weight: 300; margin-bottom: .6rem; }
+.form-block__direct-link {
+  display: inline-flex; align-items: center; gap: .6rem;
+  font-size: 1.05rem; font-weight: 600; letter-spacing: -.01em;
+  color: var(--text); transition: color .3s var(--ease-out);
+}
+.form-block__direct-link .ico { font-size: 1.05rem; color: var(--accent-soft); }
+.form-block__direct-link:hover { color: var(--accent-soft); }
+
 .form__grid { display: grid; gap: 1.1rem; grid-template-columns: 1fr; }
 .field { position: relative; }
 .field--full { grid-column: 1 / -1; }
@@ -1251,6 +1269,13 @@ html:not(.js) .proj__more-cta { display: none; }
 .foot__nav { display: flex; flex-wrap: wrap; gap: 1.4rem; }
 .foot__nav a { font-size: .875rem; color: var(--text-2); transition: color .3s var(--ease-out); }
 .foot__nav a:hover { color: var(--text); }
+.foot__phone {
+  display: inline-flex; align-items: center; gap: .55rem;
+  font-size: .875rem; font-weight: 600; color: var(--text);
+  transition: color .3s var(--ease-out);
+}
+.foot__phone .ico { font-size: 1rem; color: var(--accent-soft); }
+.foot__phone:hover { color: var(--accent-soft); }
 .foot__legal { font-size: .75rem; color: var(--text-3); }
 
 /* =============================================================================
@@ -1268,7 +1293,7 @@ html:not(.js) .proj__more-cta { display: none; }
   .platforms__notes { grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
   .step { padding-left: 4rem; }
   .foot__inner {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr auto auto;
     align-items: center;
   }
   .foot__legal { grid-column: 1 / -1; padding-top: 1.5rem; border-top: 1px solid var(--line); }
@@ -1364,8 +1389,8 @@ html:not(.js) .proj__more-cta { display: none; }
   "@type": "ProfessionalService",
   "name": "ROTOR",
   "description": "Estudio de desarrollo de aplicaciones móviles a medida para negocios, en Android e iOS.",
-  "url": "https://adrialopezbarajas-cmyk.github.io/",
-  "image": "https://adrialopezbarajas-cmyk.github.io/assets/img/og-cover.webp",
+  "url": "https://adrialopezbarajas-cmyk.github.io/rotor/",
+  "image": "https://adrialopezbarajas-cmyk.github.io/rotor/assets/img/og-cover.webp",
   "areaServed": "ES",
   "knowsAbout": [
     "Desarrollo de aplicaciones móviles",
@@ -1392,6 +1417,7 @@ html:not(.js) .proj__more-cta { display: none; }
   <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9.2" cy="8.4" r="3.3"/><path d="M2.8 20c0-3.4 2.9-5.4 6.4-5.4s6.4 2 6.4 5.4"/><path d="M16.4 5.6a3.3 3.3 0 0 1 0 5.6"/><path d="M18.2 14.9c1.9.7 3 2.2 3 4.3"/></symbol>
   <symbol id="i-profile" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="10" r="2.9"/><path d="M6.3 18.7c1.2-2.2 3.3-3.4 5.7-3.4s4.5 1.2 5.7 3.4"/></symbol>
   <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20 15.6a1.6 1.6 0 0 1-1.6 1.6H9.4L5 20.6V6.4A1.6 1.6 0 0 1 6.6 4.8h11.8A1.6 1.6 0 0 1 20 6.4z"/><path d="M9 9.6h7M9 12.8h4.5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M7.1 3.4h2.8l1.4 3.6-1.9 1.7a11.6 11.6 0 0 0 5.9 5.9l1.7-1.9 3.6 1.4v2.8a1.7 1.7 0 0 1-1.8 1.7A15.8 15.8 0 0 1 5.4 5.2a1.7 1.7 0 0 1 1.7-1.8z"/></symbol>
   <symbol id="i-map" viewBox="0 0 24 24"><path d="M9 3.8 3 6.4v13.8L9 17.6l6 2.6 6-2.6V3.8l-6 2.6z"/><path d="M9 3.8v13.8M15 6.4v13.8"/></symbol>
   <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21.4s7-6.4 7-11.2a7 7 0 1 0-14 0c0 4.8 7 11.2 7 11.2z"/><circle cx="12" cy="10" r="2.6"/></symbol>
   <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3.4 2.7 5.5 6 .9-4.35 4.2 1.03 6L12 17.2l-5.38 2.8 1.03-6L3.3 9.8l6-.9z"/></symbol>
@@ -1921,6 +1947,13 @@ html:not(.js) .proj__more-cta { display: none; }
           <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Sin compromiso ni permanencia</li>
           <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>No pasa por ningún servidor: se envía desde tu propio correo</li>
         </ul>
+        <div class="form-block__direct" data-contact-direct hidden>
+          <p class="form-block__direct-label">¿Prefieres hablar directamente?</p>
+          <a class="form-block__direct-link" data-contact-phone href="#">
+            <svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>
+            <span data-contact-phone-text></span>
+          </a>
+        </div>
       </div>
 
       <form class="form" data-form action="mailto:orionix506@gmail.com" method="post" enctype="text/plain" novalidate>
@@ -2055,6 +2088,11 @@ html:not(.js) .proj__more-cta { display: none; }
       <a href="#contacto">Contacto</a>
     </nav>
 
+    <a class="foot__phone" data-contact-phone href="#" hidden>
+      <svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>
+      <span data-contact-phone-text></span>
+    </a>
+
     <p class="foot__legal">
       <span data-year>2026</span> ROTOR · Aplicaciones móviles para Android e iOS.
     </p>
@@ -2119,7 +2157,7 @@ html:not(.js) .proj__more-cta { display: none; }
       // El rotor es la pieza que, al moverse, da cuerda al mecanismo.
       claim: "Construimos tu aplicación pieza a pieza.",
       descriptor: "Estudio de aplicaciones móviles",
-      dominio: "https://adrialopezbarajas-cmyk.github.io/",
+      dominio: "https://adrialopezbarajas-cmyk.github.io/rotor/",
     },
 
     /* ---------------------------------------------------------------------
@@ -2130,7 +2168,7 @@ html:not(.js) .proj__more-cta { display: none; }
     contacto: {
       email: "orionix506@gmail.com",
       // Deja `telefono` como cadena vacía si no quieres mostrarlo.
-      telefono: "",
+      telefono: "+34 613 647 502",
     },
 
     /* ---------------------------------------------------------------------
@@ -2929,6 +2967,25 @@ html:not(.js) .proj__more-cta { display: none; }
   }
 
   /* =========================================================================
+     Teléfono de contacto
+     Se rellena por JS (no hardcodeado en el HTML) para respetar el mismo
+     criterio que el email: si `telefono` se deja vacío, los bloques que lo
+     usan simplemente no se muestran (quedan con `hidden`).
+     ====================================================================== */
+  function initContact() {
+    var tel = (data.contacto || {}).telefono || "";
+    if (!tel) return;
+    var href = "tel:" + tel.replace(/[^\d+]/g, "");
+    $$("[data-contact-phone]").forEach(function (el) {
+      el.href = href;
+      el.hidden = false;
+      var label = el.querySelector("[data-contact-phone-text]");
+      if (label) label.textContent = tel;
+    });
+    $$("[data-contact-direct]").forEach(function (el) { el.hidden = false; });
+  }
+
+  /* =========================================================================
      Formulario
      -------------------------------------------------------------------------
      Este sitio es 100% estático (GitHub Pages no ejecuta PHP ni ningún otro
@@ -3083,6 +3140,7 @@ html:not(.js) .proj__more-cta { display: none; }
     safe(initCinema, "initCinema");
     safe(initSheet, "initSheet");
     safe(initForm, "initForm");
+    safe(initContact, "initContact");
 
     if (hasGSAP) {
       safe(initScrollSpy, "initScrollSpy");
