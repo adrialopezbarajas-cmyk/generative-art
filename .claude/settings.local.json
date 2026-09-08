@@ -4,7 +4,19 @@
       "Bash(git init *)",
       "Bash(git config *)",
       "Bash(git add *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(git checkout *)",
+      "Bash(git commit -m 'docs: Add comprehensive README with project documentation *)",
+      "Bash(git commit -m 'chore: Update settings configuration *)",
+      "PowerShell(winget install GitHub.cli)",
+      "Bash(gh auth *)",
+      "PowerShell(gh auth status)",
+      "PowerShell(&\\(Get-Command gh\\).Source auth status)",
+      "PowerShell(choco install gh -y)",
+      "Bash(git commit -m 'chore: Update settings after gh installation *)",
+      "Bash(git push *)",
+      "Skill(update-config)",
+      "Skill(update-config:*)"
     ]
   }
 }

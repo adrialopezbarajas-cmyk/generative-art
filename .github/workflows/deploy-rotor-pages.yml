@@ -1,0 +1,39 @@
+name: Deploy ROTOR to GitHub Pages
+
+on:
+  push:
+    branches:
+      - add/readme-documentation
+      - master
+    paths:
+      - "rotor/**"
+      - ".github/workflows/deploy-rotor-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Upload rotor/ as Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: rotor
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Disallow: /tools/
+
+Sitemap: https://adrialopezbarajas-cmyk.github.io/rotor/sitemap.xml
