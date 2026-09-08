@@ -1,7 +1,6 @@
-# ⚠️ Sustituye TU-USUARIO/TU-REPOSITORIO por tu URL real de GitHub Pages.
 User-agent: *
 Allow: /
 
 Disallow: /tools/
 
-Sitemap: https://TU-USUARIO.github.io/TU-REPOSITORIO/sitemap.xml
+Sitemap: https://adrialopezbarajas-cmyk.github.io/generative-art/sitemap.xml
