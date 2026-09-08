@@ -8,25 +8,25 @@
 <meta name="description" content="Estudio de desarrollo de aplicaciones móviles a medida para negocios. Creamos apps para Android y iPhone: reservas, pedidos, pagos, fidelización y panel de administración.">
 <meta name="author" content="ROTOR">
 <meta name="theme-color" content="#06070A">
-<link rel="canonical" href="https://adrialopezbarajas-cmyk.github.io/generative-art/">
+<link rel="canonical" href="https://adrialopezbarajas-cmyk.github.io/">
 
-<!-- Publicado en GitHub Pages: https://adrialopezbarajas-cmyk.github.io/generative-art/ -->
+<!-- Publicado en GitHub Pages: https://adrialopezbarajas-cmyk.github.io/ -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_ES">
 <meta property="og:site_name" content="ROTOR">
 <meta property="og:title" content="Tu negocio. Ahora también en una app.">
 <meta property="og:description" content="Transformamos ideas y negocios en aplicaciones móviles profesionales para Android y Apple.">
-<meta property="og:url" content="https://adrialopezbarajas-cmyk.github.io/generative-art/">
-<meta property="og:image" content="https://adrialopezbarajas-cmyk.github.io/generative-art/assets/img/og-cover.webp">
+<meta property="og:url" content="https://adrialopezbarajas-cmyk.github.io/">
+<meta property="og:image" content="https://adrialopezbarajas-cmyk.github.io/assets/img/og-cover.webp">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Mecanismo de reloj despiezado, pieza a pieza, sobre fondo negro.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Tu negocio. Ahora también en una app.">
 <meta name="twitter:description" content="Aplicaciones móviles a medida para Android y Apple.">
-<meta name="twitter:image" content="https://adrialopezbarajas-cmyk.github.io/generative-art/assets/img/og-cover.webp">
+<meta name="twitter:image" content="https://adrialopezbarajas-cmyk.github.io/assets/img/og-cover.webp">
 
-<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiMwNjA3MEEiLz4KICA8Y2lyY2xlIGN4PSIzMiIgY3k9IjMyIiByPSIyMSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOERCMEZGIiBzdHJva2Utd2lkdGg9IjMuMiIvPgogIDxwYXRoIGQ9Ik0zMiAxMWEyMSAyMSAwIDAgMSAxOC4yIDEwLjVMMzIgMzJ6IiBmaWxsPSIjNUI4Q0ZGIi8+CiAgPGNpcmNsZSBjeD0iMzIiIGN5PSIzMiIgcj0iNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOERCMEZGIiBzdHJva2Utd2lkdGg9IjMuMiIvPgo8L3N2Zz4K" type="image/svg+xml">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiMwNjA3MEEiLz4KICA8Y2lyY2xlIGN4PSIzMiIgY3k9IjMyIiByPSIyMSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRDZCNDdFIiBzdHJva2Utd2lkdGg9IjMuMiIvPgogIDxwYXRoIGQ9Ik0zMiAxMWEyMSAyMSAwIDAgMSAxOC4yIDEwLjVMMzIgMzJ6IiBmaWxsPSIjQzlBMDYzIi8+CiAgPGNpcmNsZSBjeD0iMzIiIGN5PSIzMiIgcj0iNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRDZCNDdFIiBzdHJva2Utd2lkdGg9IjMuMiIvPgo8L3N2Zz4=" type="image/svg+xml">
 <!-- El favicon va incrustado (data URI): un archivo menos que pueda dar 404.
      Para el icono de pantalla de inicio de iOS, Apple solo admite PNG; si
      quieres uno específico, añade tu propio <link rel="apple-touch-icon" href="ruta/a/icono-180.png"> más adelante. -->
@@ -69,10 +69,14 @@
   --text-3: #747D88; /* 4.7:1 sobre --void — el original (#5F6878) daba 3.5:1, por debajo de AA */
 
   /* Un solo acento, tomado de la esfera del reloj. */
-  --accent:      #5B8CFF;
-  --accent-soft: #8DB0FF;
-  --accent-deep: #2E5BD6;
-  --accent-glow: rgba(91, 140, 255, .28);
+  /* Latón/oro cálido, extraído del propio reloj del héroe (agujas, bisel):
+     ancla la identidad de marca en el producto que se ve en pantalla, en
+     vez de en el azul genérico de plantilla SaaS que llevaba antes. */
+  --accent:      #C9A063;
+  --accent-soft: #D6B47E;
+  --accent-deep: #8A6533;
+  --accent-glow: rgba(201, 160, 99, .28);
+  --btn-fg-on-accent: #14100A; /* texto oscuro sobre el dorado: mejor contraste que blanco */
 
   --sans: "Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -123,7 +127,7 @@ a { color: inherit; text-decoration: none; }
 p { text-wrap: pretty; }
 h1, h2, h3, h4 { text-wrap: balance; line-height: 1.03; letter-spacing: -0.034em; font-weight: 600; }
 ul, ol { list-style: none; padding: 0; }
-::selection { background: var(--accent); color: #fff; }
+::selection { background: var(--accent); color: var(--btn-fg-on-accent); }
 
 :focus-visible {
   outline: 2px solid var(--accent-soft);
@@ -137,7 +141,7 @@ body::before {
   position: fixed;
   inset: -20% -10% auto -10%;
   height: 70vh;
-  background: radial-gradient(50% 60% at 50% 0%, rgba(91, 140, 255, .10), transparent 70%);
+  background: radial-gradient(50% 60% at 50% 0%, rgba(201, 160, 99, .10), transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -182,7 +186,7 @@ body::before {
 
 .link {
   color: var(--accent-soft);
-  border-bottom: 1px solid rgba(141, 176, 255, .35);
+  border-bottom: 1px solid rgba(214, 180, 126, .35);
   transition: border-color .3s var(--ease-out), color .3s var(--ease-out);
 }
 .link:hover { color: #fff; border-bottom-color: var(--accent-soft); }
@@ -263,13 +267,13 @@ html:not(.js) .reveal { opacity: 1; translate: none; }
 
 .btn--primary {
   --btn-bg: var(--accent);
-  --btn-fg: #fff;
+  --btn-fg: var(--btn-fg-on-accent);
   box-shadow: 0 1px 0 rgba(255,255,255,.18) inset, 0 10px 30px -12px var(--accent-glow);
 }
 .btn--primary:hover {
   --btn-bg: var(--accent-soft);
   transform: translateY(-2px);
-  box-shadow: 0 1px 0 rgba(255,255,255,.25) inset, 0 18px 40px -14px rgba(91,140,255,.55);
+  box-shadow: 0 1px 0 rgba(255,255,255,.25) inset, 0 18px 40px -14px rgba(201, 160, 99,.55);
 }
 .btn--primary:active { transform: translateY(0); }
 
@@ -338,8 +342,8 @@ html:not(.js) .reveal { opacity: 1; translate: none; }
 }
 .cursor.is-hot .cursor__ring {
   width: 56px; height: 56px; margin: -28px 0 0 -28px;
-  border-color: rgba(141,176,255,.5);
-  background: rgba(91,140,255,.07);
+  border-color: rgba(214, 180, 126,.5);
+  background: rgba(201, 160, 99,.07);
 }
 .cursor.is-hot .cursor__dot { opacity: 0; }
 
@@ -427,12 +431,15 @@ html:not(.js) .reveal { opacity: 1; translate: none; }
   padding: 2rem var(--gutter) 3rem;
   display: flex; flex-direction: column; justify-content: center; gap: 2rem;
   opacity: 0;
+  pointer-events: none; /* Cerrado: invisible Y click-through. Sin esto, el
+    panel (fixed, a pantalla completa) tapa toda la web en móvil aunque no
+    se vea, y bloquea taps en tarjetas, botones y campos de formulario. */
   transition: opacity .4s var(--ease-out);
 }
 @supports (backdrop-filter: blur(20px)) {
   .menu { background: rgba(6, 7, 10, .88); backdrop-filter: blur(20px); }
 }
-.menu.is-open { opacity: 1; }
+.menu.is-open { opacity: 1; pointer-events: auto; }
 .menu__list { display: grid; gap: .35rem; }
 .menu__list a {
   display: flex; align-items: baseline; gap: 1.1rem;
@@ -491,6 +498,17 @@ html:not(.js) .reveal { opacity: 1; translate: none; }
   max-width: var(--maxw);
   margin-inline: auto;
   z-index: 3;
+}
+.cinema__hero .kicker {
+  /* El scrim del hero es más claro justo en esta franja (para que el reloj
+     se vea bien al entrar), así que el kicker necesita su propia sombra
+     fuerte y ajustada -casi un contorno- para seguir siendo legible ahí
+     encima, en vez de depender del degradado de fondo. */
+  text-shadow:
+    0 0 2px rgba(6,7,10,1),
+    0 0 6px rgba(6,7,10,1),
+    0 1px 3px rgba(6,7,10,1),
+    0 2px 14px rgba(6,7,10,.9);
 }
 .hero__title {
   font-size: clamp(2.15rem, 4.9vw, 4.15rem);
@@ -643,7 +661,7 @@ html:not(.js) .rail, html:not(.js) .cinema__loader { display: none; }
 }
 .platforms__glow {
   position: absolute; inset: 10% -20% -10% -20%;
-  background: radial-gradient(45% 50% at 50% 55%, rgba(91,140,255,.16), transparent 72%);
+  background: radial-gradient(45% 50% at 50% 55%, rgba(201, 160, 99,.16), transparent 72%);
   filter: blur(60px);
   pointer-events: none;
 }
@@ -707,8 +725,8 @@ html:not(.js) .rail, html:not(.js) .cinema__loader { display: none; }
 }
 .piece:hover {
   translate: 0 -4px;
-  border-color: rgba(141,176,255,.35);
-  background: rgba(91,140,255,.09);
+  border-color: rgba(214, 180, 126,.35);
+  background: rgba(201, 160, 99,.09);
 }
 .pieces__foot { color: var(--text-2); font-weight: 300; max-width: 34rem; font-size: .938rem; }
 
@@ -738,7 +756,7 @@ html:not(.js) .rail, html:not(.js) .cinema__loader { display: none; }
 .step.is-on::before {
   background: var(--accent);
   border-color: var(--accent-soft);
-  box-shadow: 0 0 0 5px rgba(91,140,255,.14);
+  box-shadow: 0 0 0 5px rgba(201, 160, 99,.14);
 }
 .step.is-on .step__n { color: var(--accent-soft); }
 .process__rail {
@@ -770,7 +788,7 @@ html:not(.js) .rail, html:not(.js) .cinema__loader { display: none; }
   padding-top: 2.2rem;
   overflow: hidden;
   background:
-    radial-gradient(70% 60% at 50% 10%, rgba(91,140,255,.14), transparent 70%),
+    radial-gradient(70% 60% at 50% 10%, rgba(201, 160, 99,.14), transparent 70%),
     linear-gradient(180deg, rgba(255,255,255,.03), transparent);
   perspective: 900px;
 }
@@ -819,7 +837,7 @@ html:not(.js) .proj__more-cta { display: none; }
 .final { overflow: clip; }
 .final__glow {
   position: absolute; inset: -30% -20% auto -20%; height: 90%;
-  background: radial-gradient(40% 50% at 50% 30%, rgba(91,140,255,.2), transparent 70%);
+  background: radial-gradient(40% 50% at 50% 30%, rgba(201, 160, 99,.2), transparent 70%);
   filter: blur(70px); pointer-events: none;
 }
 .final__head { max-width: 46rem; margin-bottom: clamp(3rem, 7vw, 5.5rem); }
@@ -891,9 +909,9 @@ html:not(.js) .proj__more-cta { display: none; }
 .field label small { font-size: .75em; }
 .field input:focus, .field select:focus, .field textarea:focus {
   outline: none;
-  border-color: rgba(141,176,255,.55);
-  background: rgba(91,140,255,.05);
-  box-shadow: 0 0 0 3px rgba(91,140,255,.12);
+  border-color: rgba(214, 180, 126,.55);
+  background: rgba(201, 160, 99,.05);
+  box-shadow: 0 0 0 3px rgba(201, 160, 99,.12);
 }
 .field input:focus + label,
 .field input:not(:placeholder-shown) + label,
@@ -939,8 +957,8 @@ html:not(.js) .proj__more-cta { display: none; }
 }
 .chip span:hover { border-color: var(--line-3); color: var(--text); }
 .chip input:checked + span {
-  border-color: rgba(141,176,255,.6);
-  background: rgba(91,140,255,.14);
+  border-color: rgba(214, 180, 126,.6);
+  background: rgba(201, 160, 99,.14);
   color: #fff;
 }
 .chip input:focus-visible + span { outline: 2px solid var(--accent-soft); outline-offset: 2px; }
@@ -1052,8 +1070,8 @@ html:not(.js) .proj__more-cta { display: none; }
   display: flex; align-items: center; gap: calc(11 * var(--u));
   padding: calc(11 * var(--u));
   border-radius: calc(12 * var(--u));
-  background: linear-gradient(135deg, rgba(91,140,255,.16), rgba(255,255,255,.03));
-  border: 1px solid rgba(141,176,255,.16);
+  background: linear-gradient(135deg, rgba(201, 160, 99,.16), rgba(255,255,255,.03));
+  border: 1px solid rgba(214, 180, 126,.16);
   margin-bottom: calc(12 * var(--u));
 }
 .ui__ring {
@@ -1081,7 +1099,7 @@ html:not(.js) .proj__more-cta { display: none; }
   font-size: calc(9 * var(--u));
   color: var(--text-2);
 }
-.ui__slots .is-on { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+.ui__slots .is-on { background: var(--accent); border-color: var(--accent); color: var(--btn-fg-on-accent); font-weight: 600; }
 .ui__slots .is-off { opacity: .32; text-decoration: line-through; }
 .ui__card {
   display: flex; justify-content: space-between; align-items: center;
@@ -1116,15 +1134,15 @@ html:not(.js) .proj__more-cta { display: none; }
   text-align: center;
   padding: calc(10 * var(--u));
   border-radius: calc(10 * var(--u));
-  background: var(--accent); color: #fff;
+  background: var(--accent); color: var(--btn-fg-on-accent);
   font-size: calc(10.5 * var(--u)); font-weight: 600;
 }
 .ui__btn--ghost { background: rgba(255,255,255,.06); color: var(--text); border: 1px solid var(--line-2); }
 .ui__key {
   height: calc(58 * var(--u));
   border-radius: calc(12 * var(--u));
-  background: linear-gradient(135deg, rgba(91,140,255,.22), rgba(255,255,255,.04));
-  border: 1px solid rgba(141,176,255,.2);
+  background: linear-gradient(135deg, rgba(201, 160, 99,.22), rgba(255,255,255,.04));
+  border: 1px solid rgba(214, 180, 126,.2);
   display: grid; place-items: center;
   margin-bottom: calc(10 * var(--u));
 }
@@ -1148,7 +1166,7 @@ html:not(.js) .proj__more-cta { display: none; }
   background: linear-gradient(150deg, rgba(255,255,255,.09), rgba(255,255,255,.02));
   border: 1px solid var(--line);
 }
-.ui__tiles i:nth-child(2) { background: linear-gradient(150deg, rgba(91,140,255,.2), rgba(255,255,255,.02)); }
+.ui__tiles i:nth-child(2) { background: linear-gradient(150deg, rgba(201, 160, 99,.2), rgba(255,255,255,.02)); }
 .ui__tabs {
   margin-top: auto;
   padding-top: calc(10 * var(--u));
@@ -1211,7 +1229,7 @@ html:not(.js) .proj__more-cta { display: none; }
   margin-bottom: .5rem;
   border-radius: var(--radius);
   background:
-    radial-gradient(60% 70% at 50% 0%, rgba(91,140,255,.14), transparent 70%),
+    radial-gradient(60% 70% at 50% 0%, rgba(201, 160, 99,.14), transparent 70%),
     linear-gradient(180deg, rgba(255,255,255,.03), transparent);
 }
 .sheet__visual .phone { --pw: 178px; }
@@ -1346,8 +1364,8 @@ html:not(.js) .proj__more-cta { display: none; }
   "@type": "ProfessionalService",
   "name": "ROTOR",
   "description": "Estudio de desarrollo de aplicaciones móviles a medida para negocios, en Android e iOS.",
-  "url": "https://adrialopezbarajas-cmyk.github.io/generative-art/",
-  "image": "https://adrialopezbarajas-cmyk.github.io/generative-art/assets/img/og-cover.webp",
+  "url": "https://adrialopezbarajas-cmyk.github.io/",
+  "image": "https://adrialopezbarajas-cmyk.github.io/assets/img/og-cover.webp",
   "areaServed": "ES",
   "knowsAbout": [
     "Desarrollo de aplicaciones móviles",
@@ -2101,7 +2119,7 @@ html:not(.js) .proj__more-cta { display: none; }
       // El rotor es la pieza que, al moverse, da cuerda al mecanismo.
       claim: "Construimos tu aplicación pieza a pieza.",
       descriptor: "Estudio de aplicaciones móviles",
-      dominio: "https://adrialopezbarajas-cmyk.github.io/generative-art/",
+      dominio: "https://adrialopezbarajas-cmyk.github.io/",
     },
 
     /* ---------------------------------------------------------------------

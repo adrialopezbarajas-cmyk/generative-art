@@ -3,4 +3,4 @@ Allow: /
 
 Disallow: /tools/
 
-Sitemap: https://adrialopezbarajas-cmyk.github.io/generative-art/sitemap.xml
+Sitemap: https://adrialopezbarajas-cmyk.github.io/sitemap.xml
